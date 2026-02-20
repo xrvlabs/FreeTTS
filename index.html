@@ -573,32 +573,23 @@
         .close-auth-btn:hover {
             color: var(--primary);
         }
-        .voice-info-badge {
-            display: inline-block;
-            padding: 2px 8px;
-            background: linear-gradient(145deg, #8b5cf6, #6d28d9);
-            color: white;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            margin-left: 5px;
-        }
-        .voice-loading {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-light);
+        .voice-notice {
+            background: linear-gradient(145deg, #fef3c7, #fde68a);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            margin-top: 10px;
             font-size: 0.85rem;
+            color: #92400e;
+            display: none;
         }
-        .voice-loading .spinner {
-            width: 16px;
-            height: 16px;
-            border: 2px solid var(--primary);
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .voice-notice.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .voice-notice a {
+            color: #7c3aed;
+            text-decoration: underline;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -695,12 +686,17 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     <h2 class="card-title font-bold mb-3 gradient-text">🎙️ VOICE & SETTINGS</h2>
                     <div class="mb-4">
                         <label class="control-label">
-                            <span>🗣️ SELECT VOICE</span>
+                            <span>🇮🇳 INDIAN PREMIUM VOICE</span>
                             <span class="control-value" id="voiceInfo">Loading...</span>
                         </label>
                         <select id="voiceSelect" class="clay-input">
                             <option value="">Loading voices...</option>
                         </select>
+                        <div class="voice-notice" id="voiceNotice">
+                            ⚠️ <strong>Premium voices not found!</strong><br>
+                            This app requires Microsoft Indian voices (Neerja, Madhur, Valluvar, Mohan).<br>
+                            <strong>Windows users:</strong> Install Indian language pack from Settings → Time & Language → Language.
+                        </div>
                     </div>
                     <div class="mb-4">
                         <label class="control-label">
@@ -939,8 +935,8 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 this.currentChunkWPM = 80;
                 this.isFluctuating = false;
                 this.fluctuationDirection = 0;
-                // Preferred Indian voice names (Microsoft)
-                this.allowedVoiceNames = ['madhur', 'neerja', 'valluvar', 'mohan', 'ravi', 'heera', 'hemant', 'kalpana'];
+                // Only these 4 premium Indian voices
+                this.allowedVoiceNames = ['madhur', 'neerja', 'valluvar', 'mohan'];
                 this.onStart = null;
                 this.onProgress = null;
                 this.onEnd = null;
@@ -954,175 +950,108 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 const loadFn = () => {
                     if (this.isPlaying) return;
                     this.voices = this.synth.getVoices();
-                    if (this.voices.length > 0) {
-                        this.filterAllowedVoices();
-                        this.populateVoiceSelect();
-                    }
+                    this.filterAllowedVoices();
+                    this.populateVoiceSelect();
                 };
                 loadFn();
                 if (this.synth.onvoiceschanged !== undefined) {
                     this.synth.onvoiceschanged = loadFn;
                 }
-                // Multiple attempts to load voices (some browsers are slow)
                 setTimeout(loadFn, 100);
                 setTimeout(loadFn, 500);
                 setTimeout(loadFn, 1000);
-                setTimeout(loadFn, 2000);
             }
             
             filterAllowedVoices() {
                 this.allowedVoices = [];
                 const addedNames = new Set();
                 
-                // Priority 1: Premium Indian voices (Microsoft)
-                const premiumIndian = [];
-                // Priority 2: Any Indian English voices (en-IN)
-                const indianEnglish = [];
-                // Priority 3: Google/Chrome English voices
-                const googleEnglish = [];
-                // Priority 4: Any English voices
-                const otherEnglish = [];
-                
                 this.voices.forEach((voice) => {
                     const voiceName = voice.name.toLowerCase();
                     const voiceLang = voice.lang.toLowerCase();
                     
-                    // Skip Chinese, Japanese, Korean and other non-English voices
+                    // Skip Chinese voices
                     if (voiceLang.includes('zh') || voiceLang.includes('chinese') || 
-                        voiceLang.includes('ja') || voiceLang.includes('ko') ||
-                        voiceLang.includes('ar') || voiceLang.includes('ru') ||
                         voiceName.includes('chinese') || voiceName.includes('huihui') ||
                         voiceName.includes('kangkang') || voiceName.includes('yaoyao')) {
                         return;
                     }
                     
-                    // Check for premium Indian voices
+                    // Only add if it matches one of our 4 allowed voices
                     for (const allowedName of this.allowedVoiceNames) {
-                        if (voiceName.includes(allowedName) && !addedNames.has(allowedName)) {
-                            premiumIndian.push(voice);
-                            addedNames.add(allowedName);
-                            return;
+                        if (voiceName.includes(allowedName)) {
+                            if (!addedNames.has(allowedName)) {
+                                this.allowedVoices.push(voice);
+                                addedNames.add(allowedName);
+                            }
+                            break;
                         }
                     }
-                    
-                    // Check for Indian English voices
-                    if (voiceLang === 'en-in' || voiceLang.includes('india') || 
-                        voiceName.includes('india') || voiceName.includes('hindi')) {
-                        indianEnglish.push(voice);
-                        return;
-                    }
-                    
-                    // Check for Google voices (high quality)
-                    if (voiceName.includes('google') && voiceLang.startsWith('en')) {
-                        googleEnglish.push(voice);
-                        return;
-                    }
-                    
-                    // Any other English voices
-                    if (voiceLang.startsWith('en')) {
-                        otherEnglish.push(voice);
-                    }
                 });
                 
-                // Build final list with priority
-                if (premiumIndian.length > 0) {
-                    this.allowedVoices.push(...premiumIndian);
-                }
-                if (indianEnglish.length > 0) {
-                    this.allowedVoices.push(...indianEnglish);
-                }
-                if (googleEnglish.length > 0) {
-                    this.allowedVoices.push(...googleEnglish);
-                }
-                if (otherEnglish.length > 0) {
-                    this.allowedVoices.push(...otherEnglish);
-                }
-                
-                // Fallback: If still no voices, use ALL available voices
-                if (this.allowedVoices.length === 0) {
-                    this.allowedVoices = this.voices.filter(v => {
-                        const lang = v.lang.toLowerCase();
-                        return lang.startsWith('en') || lang.startsWith('hi');
-                    });
-                }
-                
-                // Last resort: use any voice
-                if (this.allowedVoices.length === 0 && this.voices.length > 0) {
-                    this.allowedVoices = this.voices.slice(0, 15);
-                }
-                
-                // Remove duplicates
-                const seen = new Set();
-                this.allowedVoices = this.allowedVoices.filter(voice => {
-                    const key = voice.name + voice.lang;
-                    if (seen.has(key)) return false;
-                    seen.add(key);
-                    return true;
+                // Sort: Neerja first, then Madhur, then Valluvar, then Mohan
+                this.allowedVoices.sort((a, b) => {
+                    const aName = a.name.toLowerCase();
+                    const bName = b.name.toLowerCase();
+                    if (aName.includes('neerja')) return -1;
+                    if (bName.includes('neerja')) return 1;
+                    if (aName.includes('madhur')) return -1;
+                    if (bName.includes('madhur')) return 1;
+                    if (aName.includes('valluvar')) return -1;
+                    if (bName.includes('valluvar')) return 1;
+                    return 0;
                 });
-                
-                // Limit to 20 voices for cleaner UI
-                this.allowedVoices = this.allowedVoices.slice(0, 20);
             }
             
             populateVoiceSelect() {
                 const select = document.getElementById('voiceSelect');
                 const voiceInfo = document.getElementById('voiceInfo');
+                const voiceNotice = document.getElementById('voiceNotice');
                 
                 if (this.allowedVoices.length === 0) {
-                    select.innerHTML = '<option value="">No voices available - Please check browser settings</option>';
-                    voiceInfo.textContent = 'No voices';
+                    select.innerHTML = '<option value="">No premium voices available</option>';
+                    voiceInfo.textContent = 'Not found';
+                    voiceNotice.classList.add('active');
                     return;
                 }
                 
-                // Categorize voices
-                const indianVoices = [];
-                const googleVoices = [];
-                const otherVoices = [];
+                voiceNotice.classList.remove('active');
+                
+                // Separate female and male voices
+                const femaleVoices = [];
+                const maleVoices = [];
                 
                 this.allowedVoices.forEach((voice) => {
                     const voiceName = voice.name.toLowerCase();
-                    const voiceLang = voice.lang.toLowerCase();
-                    
-                    if (voiceLang === 'en-in' || voiceName.includes('india') || 
-                        this.allowedVoiceNames.some(n => voiceName.includes(n))) {
-                        indianVoices.push(voice);
-                    } else if (voiceName.includes('google')) {
-                        googleVoices.push(voice);
+                    if (voiceName.includes('neerja')) {
+                        femaleVoices.push(voice);
                     } else {
-                        otherVoices.push(voice);
+                        maleVoices.push(voice);
                     }
                 });
                 
                 select.innerHTML = '';
                 
-                // Add Indian voices group
-                if (indianVoices.length > 0) {
-                    const group = document.createElement('optgroup');
-                    group.label = '🇮🇳 INDIAN ENGLISH';
-                    indianVoices.forEach((voice) => {
-                        group.appendChild(this.createVoiceOption(voice));
+                // Add female voices group
+                if (femaleVoices.length > 0) {
+                    const femaleGroup = document.createElement('optgroup');
+                    femaleGroup.label = '👩 FEMALE';
+                    femaleVoices.forEach((voice) => {
+                        const option = this.createVoiceOption(voice);
+                        femaleGroup.appendChild(option);
                     });
-                    select.appendChild(group);
+                    select.appendChild(femaleGroup);
                 }
                 
-                // Add Google voices group
-                if (googleVoices.length > 0) {
-                    const group = document.createElement('optgroup');
-                    group.label = '☁️ GOOGLE VOICES';
-                    googleVoices.forEach((voice) => {
-                        group.appendChild(this.createVoiceOption(voice));
+                // Add male voices group
+                if (maleVoices.length > 0) {
+                    const maleGroup = document.createElement('optgroup');
+                    maleGroup.label = '👨 MALE';
+                    maleVoices.forEach((voice) => {
+                        const option = this.createVoiceOption(voice);
+                        maleGroup.appendChild(option);
                     });
-                    select.appendChild(group);
-                }
-                
-                // Add other English voices group
-                if (otherVoices.length > 0) {
-                    const group = document.createElement('optgroup');
-                    group.label = '🌐 OTHER ENGLISH';
-                    otherVoices.forEach((voice) => {
-                        group.appendChild(this.createVoiceOption(voice));
-                    });
-                    select.appendChild(group);
+                    select.appendChild(maleGroup);
                 }
                 
                 // Select first voice
@@ -1152,18 +1081,17 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     .replace(' - Tamil (India)', '')
                     .replace(' - Telugu (India)', '')
                     .replace(' - Hindi (India)', '')
-                    .replace(' - English (United States)', ' (US)')
-                    .replace(' - English (United Kingdom)', ' (UK)')
-                    .replace(' - English (Australia)', ' (AU)')
                     .replace(' - ', ' ')
                     .replace(/\(.*?\)/g, '')
                     .trim();
+                
                 const nameLower = voice.name.toLowerCase();
                 let badge = '';
                 if (nameLower.includes('neural')) badge = ' ⭐';
                 else if (nameLower.includes('premium')) badge = ' 💎';
                 else if (nameLower.includes('natural')) badge = ' ✨';
                 else if (!voice.localService) badge = ' ☁️';
+                
                 option.textContent = `${name}${badge}`;
                 return option;
             }
@@ -1544,6 +1472,13 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 alert('Please enter text for dictation!');
                 return;
             }
+            
+            // Check if voice is available
+            if (!engine.selectedVoice) {
+                alert('No premium voice available!\n\nThis app requires Microsoft Indian voices (Neerja, Madhur, Valluvar, Mohan).\n\nWindows users: Install Indian language pack from Settings → Time & Language → Language.');
+                return;
+            }
+            
             if (engine.isPlaying) {
                 engine.stop();
                 stopTimeCounter();
