@@ -181,6 +181,7 @@
             font-size: 0.7rem;
             color: #888;
             text-align: center;
+            cursor: pointer;
         }
         .slider-label.active {
             color: #ec4899;
@@ -572,6 +573,33 @@
         .close-auth-btn:hover {
             color: var(--primary);
         }
+        .voice-info-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: linear-gradient(145deg, #8b5cf6, #6d28d9);
+            color: white;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            margin-left: 5px;
+        }
+        .voice-loading {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+        .voice-loading .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--primary);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -667,7 +695,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     <h2 class="card-title font-bold mb-3 gradient-text">🎙️ VOICE & SETTINGS</h2>
                     <div class="mb-4">
                         <label class="control-label">
-                            <span>🇮🇳 INDIAN PREMIUM VOICE</span>
+                            <span>🗣️ SELECT VOICE</span>
                             <span class="control-value" id="voiceInfo">Loading...</span>
                         </label>
                         <select id="voiceSelect" class="clay-input">
@@ -888,6 +916,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
         document.getElementById('logoutBtn').addEventListener('click', () => {
             authManager.logout();
         });
+
         class DictationEngine {
             constructor() {
                 this.synth = window.speechSynthesis;
@@ -910,7 +939,8 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 this.currentChunkWPM = 80;
                 this.isFluctuating = false;
                 this.fluctuationDirection = 0;
-                this.allowedVoiceNames = ['madhur', 'neerja', 'valluvar', 'mohan'];
+                // Preferred Indian voice names (Microsoft)
+                this.allowedVoiceNames = ['madhur', 'neerja', 'valluvar', 'mohan', 'ravi', 'heera', 'hemant', 'kalpana'];
                 this.onStart = null;
                 this.onProgress = null;
                 this.onEnd = null;
@@ -919,101 +949,196 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 this.onWpmChange = null;
                 this.loadVoices();
             }
+            
             loadVoices() {
                 const loadFn = () => {
                     if (this.isPlaying) return;
                     this.voices = this.synth.getVoices();
-                    this.filterAllowedVoices();
-                    this.populateVoiceSelect();
+                    if (this.voices.length > 0) {
+                        this.filterAllowedVoices();
+                        this.populateVoiceSelect();
+                    }
                 };
                 loadFn();
                 if (this.synth.onvoiceschanged !== undefined) {
                     this.synth.onvoiceschanged = loadFn;
                 }
+                // Multiple attempts to load voices (some browsers are slow)
                 setTimeout(loadFn, 100);
                 setTimeout(loadFn, 500);
                 setTimeout(loadFn, 1000);
+                setTimeout(loadFn, 2000);
             }
+            
             filterAllowedVoices() {
                 this.allowedVoices = [];
                 const addedNames = new Set();
+                
+                // Priority 1: Premium Indian voices (Microsoft)
+                const premiumIndian = [];
+                // Priority 2: Any Indian English voices (en-IN)
+                const indianEnglish = [];
+                // Priority 3: Google/Chrome English voices
+                const googleEnglish = [];
+                // Priority 4: Any English voices
+                const otherEnglish = [];
+                
                 this.voices.forEach((voice) => {
                     const voiceName = voice.name.toLowerCase();
                     const voiceLang = voice.lang.toLowerCase();
+                    
+                    // Skip Chinese, Japanese, Korean and other non-English voices
                     if (voiceLang.includes('zh') || voiceLang.includes('chinese') || 
+                        voiceLang.includes('ja') || voiceLang.includes('ko') ||
+                        voiceLang.includes('ar') || voiceLang.includes('ru') ||
                         voiceName.includes('chinese') || voiceName.includes('huihui') ||
                         voiceName.includes('kangkang') || voiceName.includes('yaoyao')) {
                         return;
                     }
+                    
+                    // Check for premium Indian voices
                     for (const allowedName of this.allowedVoiceNames) {
-                        if (voiceName.includes(allowedName)) {
-                            if (!addedNames.has(allowedName)) {
-                                this.allowedVoices.push(voice);
-                                addedNames.add(allowedName);
-                            }
-                            break;
+                        if (voiceName.includes(allowedName) && !addedNames.has(allowedName)) {
+                            premiumIndian.push(voice);
+                            addedNames.add(allowedName);
+                            return;
                         }
                     }
+                    
+                    // Check for Indian English voices
+                    if (voiceLang === 'en-in' || voiceLang.includes('india') || 
+                        voiceName.includes('india') || voiceName.includes('hindi')) {
+                        indianEnglish.push(voice);
+                        return;
+                    }
+                    
+                    // Check for Google voices (high quality)
+                    if (voiceName.includes('google') && voiceLang.startsWith('en')) {
+                        googleEnglish.push(voice);
+                        return;
+                    }
+                    
+                    // Any other English voices
+                    if (voiceLang.startsWith('en')) {
+                        otherEnglish.push(voice);
+                    }
                 });
-                this.allowedVoices.sort((a, b) => {
-                    const aName = a.name.toLowerCase();
-                    const bName = b.name.toLowerCase();
-                    if (aName.includes('neerja')) return -1;
-                    if (bName.includes('neerja')) return 1;
-                    if (aName.includes('madhur')) return -1;
-                    if (bName.includes('madhur')) return 1;
-                    if (aName.includes('valluvar')) return -1;
-                    if (bName.includes('valluvar')) return 1;
-                    return 0;
+                
+                // Build final list with priority
+                if (premiumIndian.length > 0) {
+                    this.allowedVoices.push(...premiumIndian);
+                }
+                if (indianEnglish.length > 0) {
+                    this.allowedVoices.push(...indianEnglish);
+                }
+                if (googleEnglish.length > 0) {
+                    this.allowedVoices.push(...googleEnglish);
+                }
+                if (otherEnglish.length > 0) {
+                    this.allowedVoices.push(...otherEnglish);
+                }
+                
+                // Fallback: If still no voices, use ALL available voices
+                if (this.allowedVoices.length === 0) {
+                    this.allowedVoices = this.voices.filter(v => {
+                        const lang = v.lang.toLowerCase();
+                        return lang.startsWith('en') || lang.startsWith('hi');
+                    });
+                }
+                
+                // Last resort: use any voice
+                if (this.allowedVoices.length === 0 && this.voices.length > 0) {
+                    this.allowedVoices = this.voices.slice(0, 15);
+                }
+                
+                // Remove duplicates
+                const seen = new Set();
+                this.allowedVoices = this.allowedVoices.filter(voice => {
+                    const key = voice.name + voice.lang;
+                    if (seen.has(key)) return false;
+                    seen.add(key);
+                    return true;
                 });
+                
+                // Limit to 20 voices for cleaner UI
+                this.allowedVoices = this.allowedVoices.slice(0, 20);
             }
+            
             populateVoiceSelect() {
                 const select = document.getElementById('voiceSelect');
                 const voiceInfo = document.getElementById('voiceInfo');
+                
                 if (this.allowedVoices.length === 0) {
-                    select.innerHTML = '<option value="">No premium voices available</option>';
-                    voiceInfo.textContent = 'No voices found';
+                    select.innerHTML = '<option value="">No voices available - Please check browser settings</option>';
+                    voiceInfo.textContent = 'No voices';
                     return;
                 }
-                const femaleVoices = [];
-                const maleVoices = [];
+                
+                // Categorize voices
+                const indianVoices = [];
+                const googleVoices = [];
+                const otherVoices = [];
+                
                 this.allowedVoices.forEach((voice) => {
                     const voiceName = voice.name.toLowerCase();
-                    if (voiceName.includes('neerja')) {
-                        femaleVoices.push(voice);
+                    const voiceLang = voice.lang.toLowerCase();
+                    
+                    if (voiceLang === 'en-in' || voiceName.includes('india') || 
+                        this.allowedVoiceNames.some(n => voiceName.includes(n))) {
+                        indianVoices.push(voice);
+                    } else if (voiceName.includes('google')) {
+                        googleVoices.push(voice);
                     } else {
-                        maleVoices.push(voice);
+                        otherVoices.push(voice);
                     }
                 });
+                
                 select.innerHTML = '';
-                if (femaleVoices.length > 0) {
-                    const femaleGroup = document.createElement('optgroup');
-                    femaleGroup.label = '👩 FEMALE';
-                    femaleVoices.forEach((voice) => {
-                        const option = this.createVoiceOption(voice);
-                        femaleGroup.appendChild(option);
+                
+                // Add Indian voices group
+                if (indianVoices.length > 0) {
+                    const group = document.createElement('optgroup');
+                    group.label = '🇮🇳 INDIAN ENGLISH';
+                    indianVoices.forEach((voice) => {
+                        group.appendChild(this.createVoiceOption(voice));
                     });
-                    select.appendChild(femaleGroup);
+                    select.appendChild(group);
                 }
-                if (maleVoices.length > 0) {
-                    const maleGroup = document.createElement('optgroup');
-                    maleGroup.label = '👨 MALE';
-                    maleVoices.forEach((voice) => {
-                        const option = this.createVoiceOption(voice);
-                        maleGroup.appendChild(option);
+                
+                // Add Google voices group
+                if (googleVoices.length > 0) {
+                    const group = document.createElement('optgroup');
+                    group.label = '☁️ GOOGLE VOICES';
+                    googleVoices.forEach((voice) => {
+                        group.appendChild(this.createVoiceOption(voice));
                     });
-                    select.appendChild(maleGroup);
+                    select.appendChild(group);
                 }
+                
+                // Add other English voices group
+                if (otherVoices.length > 0) {
+                    const group = document.createElement('optgroup');
+                    group.label = '🌐 OTHER ENGLISH';
+                    otherVoices.forEach((voice) => {
+                        group.appendChild(this.createVoiceOption(voice));
+                    });
+                    select.appendChild(group);
+                }
+                
+                // Select first voice
                 if (this.allowedVoices.length > 0) {
                     const firstIndex = this.voices.indexOf(this.allowedVoices[0]);
                     select.value = firstIndex;
                     this.selectedVoice = this.voices[firstIndex];
                 }
+                
                 voiceInfo.textContent = `${this.allowedVoices.length} voices`;
+                
                 select.addEventListener('change', () => {
                     this.selectedVoice = this.voices[select.value];
                 });
             }
+            
             createVoiceOption(voice) {
                 const option = document.createElement('option');
                 const realIndex = this.voices.indexOf(voice);
@@ -1027,6 +1152,9 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     .replace(' - Tamil (India)', '')
                     .replace(' - Telugu (India)', '')
                     .replace(' - Hindi (India)', '')
+                    .replace(' - English (United States)', ' (US)')
+                    .replace(' - English (United Kingdom)', ' (UK)')
+                    .replace(' - English (Australia)', ' (AU)')
                     .replace(' - ', ' ')
                     .replace(/\(.*?\)/g, '')
                     .trim();
@@ -1039,6 +1167,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 option.textContent = `${name}${badge}`;
                 return option;
             }
+            
             splitIntoChunks(text) {
                 const paragraphs = text.split(/\n\n+/);
                 const chunks = [];
@@ -1057,6 +1186,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 });
                 return chunks;
             }
+            
             getFluctuatedWPM() {
                 if (this.fluctuation === 0) {
                     this.isFluctuating = false;
@@ -1074,6 +1204,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 const fluctuatedWPM = this.targetWPM + (this.fluctuationDirection * this.fluctuation);
                 return Math.max(40, Math.min(160, fluctuatedWPM));
             }
+            
             resetState() {
                 this.isPlaying = false;
                 this.isPaused = false;
@@ -1090,6 +1221,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 this.fluctuationDirection = 0;
                 this.synth.cancel();
             }
+            
             async speak(text) {
                 this.resetState();
                 this.isPlaying = true;
@@ -1135,6 +1267,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     this.onEnd(this.targetWPM);
                 }
             }
+            
             speakChunk(text, wordCount, msPerWord) {
                 return new Promise((resolve) => {
                     const utterance = new SpeechSynthesisUtterance(text);
@@ -1169,6 +1302,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     this.synth.speak(utterance);
                 });
             }
+            
             pause() {
                 if (this.isPlaying && !this.isPaused) {
                     this.isPaused = true;
@@ -1177,6 +1311,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     if (this.onPause) this.onPause();
                 }
             }
+            
             resume() {
                 if (this.isPlaying && this.isPaused) {
                     this.pausedTime += performance.now() - this.lastPauseStart;
@@ -1185,6 +1320,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     if (this.onResume) this.onResume();
                 }
             }
+            
             stop() {
                 this.shouldStop = true;
                 this.isPlaying = false;
@@ -1192,17 +1328,21 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 this.lockedVoice = null;
                 this.synth.cancel();
             }
+            
             getRemainingTime() {
                 if (!this.isPlaying) return 0;
                 const elapsed = (performance.now() - this.startTime - this.pausedTime) / 1000;
                 const remaining = Math.max(0, this.totalEstimatedTime - elapsed);
                 return remaining;
             }
+            
             sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, Math.max(0, ms)));
             }
         }
+        
         const engine = new DictationEngine();
+        
         const elements = {
             textInput: document.getElementById('textInput'),
             wordCount: document.getElementById('wordCount'),
@@ -1228,7 +1368,9 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
             liveWpmLabel: document.getElementById('liveWpmLabel'),
             progressFill: document.getElementById('progressFill')
         };
+        
         let timeInterval = null;
+        
         function init() {
             updateWordCount();
             setupEventListeners();
@@ -1236,6 +1378,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
             engine.pitch = 10;
             engine.fluctuation = 0;
         }
+        
         function setupEventListeners() {
             elements.textInput.addEventListener('input', updateWordCount);
             elements.wpmSlider.addEventListener('input', (e) => {
@@ -1272,6 +1415,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
             elements.pauseBtn.addEventListener('click', handlePauseResume);
             elements.stopBtn.addEventListener('click', handleStop);
         }
+        
         function updateFluctuationDisplay(value) {
             if (value === 0) {
                 elements.fluctuationDisplay.textContent = 'OFF';
@@ -1279,12 +1423,14 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 elements.fluctuationDisplay.textContent = `±${value} WPM`;
             }
         }
+        
         function updateSliderLabels(activeValue) {
             document.querySelectorAll('.slider-label').forEach(label => {
                 const labelValue = parseInt(label.dataset.value);
                 label.classList.toggle('active', labelValue === activeValue);
             });
         }
+        
         function setupEngineCallbacks() {
             engine.onStart = (wpm, totalWords, totalEstimatedTime) => {
                 resetProgress();
@@ -1342,11 +1488,13 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 startTimeCounter();
             };
         }
+        
         function formatTime(seconds) {
             const mins = Math.floor(seconds / 60);
             const secs = Math.floor(seconds % 60);
             return `${mins}:${secs.toString().padStart(2, '0')}`;
         }
+        
         function updateRemainingTimeDisplay(remainingSeconds) {
             elements.timeText.textContent = formatTime(remainingSeconds);
             elements.timeText.className = 'live-stat-value';
@@ -1358,6 +1506,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 elements.timeText.classList.add('time-remaining');
             }
         }
+        
         function startTimeCounter() {
             if (timeInterval) clearInterval(timeInterval);
             timeInterval = setInterval(() => {
@@ -1368,23 +1517,27 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 }
             }, 100);
         }
+        
         function stopTimeCounter() {
             if (timeInterval) {
                 clearInterval(timeInterval);
                 timeInterval = null;
             }
         }
+        
         function updateWordCount() {
             const text = elements.textInput.value.trim();
             const count = text ? text.split(/\s+/).length : 0;
             elements.wordCount.textContent = count;
         }
+        
         function updateWpmPresets(activeWpm) {
             const buttons = elements.wpmPresets.querySelectorAll('.wpm-preset');
             buttons.forEach(btn => {
                 btn.classList.toggle('active', parseInt(btn.dataset.wpm) === activeWpm);
             });
         }
+        
         function handleStart() {
             const text = elements.textInput.value.trim();
             if (!text) {
@@ -1398,6 +1551,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
             resetProgress();
             engine.speak(text);
         }
+        
         function handlePauseResume() {
             if (engine.isPaused) {
                 engine.resume();
@@ -1405,6 +1559,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 engine.pause();
             }
         }
+        
         function handleStop() {
             engine.stop();
             stopTimeCounter();
@@ -1412,11 +1567,13 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
             showStartButton();
             resetProgress();
         }
+        
         function showStartButton() {
             elements.startBtnContainer.classList.remove('hidden');
             elements.startBtnContainer.classList.add('fade-in');
             elements.playbackBtnContainer.classList.add('hidden');
         }
+        
         function showPlaybackButtons() {
             elements.startBtnContainer.classList.add('hidden');
             elements.playbackBtnContainer.classList.remove('hidden');
@@ -1424,6 +1581,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
             elements.pauseIcon.textContent = '⏸️';
             elements.pauseText.textContent = 'PAUSE';
         }
+        
         function resetProgress() {
             elements.progressFill.style.width = '0%';
             elements.progressText.textContent = '0 / 0';
@@ -1434,6 +1592,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
             elements.liveWpmLabel.textContent = 'Current WPM';
             elements.liveWpmLabel.classList.remove('fluctuating');
         }
+        
         document.addEventListener('DOMContentLoaded', init);
         window.addEventListener('beforeunload', () => {
             engine.stop();
