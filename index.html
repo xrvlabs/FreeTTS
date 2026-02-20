@@ -50,11 +50,9 @@
         }
         ::-webkit-scrollbar { display: none; }
         * { -ms-overflow-style: none; scrollbar-width: none; }
-        
         h1, h2, h3, .section-title, .gradient-text { font-family: var(--font-display); letter-spacing: 1px; }
         button, .clay-btn, .clay-btn-primary, label { font-family: var(--font-ui); }
         p, span, input, select, textarea { font-family: var(--font-body); }
-        
         .clay { background: linear-gradient(145deg, #ffffff, #e8eeff); border-radius: var(--radius); box-shadow: 6px 6px 16px rgba(166, 180, 200, 0.5), -6px -6px 16px rgba(255, 255, 255, 0.9); }
         .clay-inset { background: linear-gradient(145deg, #dde4f6, #f5f8ff); border-radius: var(--radius); box-shadow: inset 4px 4px 10px rgba(166, 180, 200, 0.5), inset -4px -4px 10px rgba(255, 255, 255, 0.9); }
         .clay-btn { background: linear-gradient(145deg, #ffffff, #e8eeff); border-radius: var(--radius); box-shadow: 5px 5px 12px rgba(166, 180, 200, 0.5), -5px -5px 12px rgba(255, 255, 255, 0.9); border: none; cursor: pointer; transition: all 0.3s ease; }
@@ -62,23 +60,20 @@
         .clay-btn-primary { background: linear-gradient(145deg, #8b5cf6, #6d28d9); color: white; box-shadow: 5px 5px 12px rgba(109, 40, 217, 0.3), -5px -5px 12px rgba(255, 255, 255, 0.9); }
         .clay-btn-danger { background: linear-gradient(145deg, #ef4444, #dc2626); color: white; box-shadow: 5px 5px 12px rgba(239, 68, 68, 0.3), -5px -5px 12px rgba(255, 255, 255, 0.9); }
         .clay-btn-warning { background: linear-gradient(145deg, #f59e0b, #d97706); color: white; box-shadow: 5px 5px 12px rgba(245, 158, 11, 0.3), -5px -5px 12px rgba(255, 255, 255, 0.9); }
+        .clay-btn-google { background: white; color: #444; box-shadow: 5px 5px 12px rgba(166, 180, 200, 0.5), -5px -5px 12px rgba(255, 255, 255, 0.9); border: 1px solid #ddd; }
         .clay-input { background: linear-gradient(145deg, #dde4f6, #f5f8ff); border-radius: var(--radius); box-shadow: inset 3px 3px 8px rgba(166, 180, 200, 0.5), inset -3px -3px 8px rgba(255, 255, 255, 0.9); border: 2px solid transparent; transition: border-color 0.3s ease; padding: 10px 12px; width: 100%; font-size: 0.9rem; outline: none; font-family: var(--font-body); }
         .clay-input:focus { border-color: var(--primary); }
-        
         .gradient-bg { background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 50%, #f472b6 100%); }
         .gradient-text { background: linear-gradient(135deg, #7c3aed, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        
         section { padding: 16px 0; width: 100%; }
         .section-title { font-size: 1.5rem; margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 2px; }
         @media (min-width: 768px) { .section-title { font-size: 1.75rem; } }
         .header-inner { padding: 0.5rem 0.75rem; margin-bottom: 10px; width: 100%; }
         .full-width { width: 100% !important; max-width: 100% !important; }
         .content-box { width: 100%; margin-bottom: 10px; }
-        
         .brand-text { font-family: var(--font-display); font-size: 1.25rem; letter-spacing: 2px; }
         .card-title { font-family: var(--font-display); font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; }
         .btn-text { font-family: var(--font-ui); text-transform: uppercase; letter-spacing: 0.5px; }
-        
         .control-label {
             font-size: 0.85rem;
             color: var(--text-light);
@@ -91,22 +86,18 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
         .control-value {
             color: var(--primary);
             font-weight: 700;
             font-size: 0.9rem;
             font-family: var(--font-mono);
         }
-        
-        /* WPM Presets - 5 per row, auto-adjusting */
         .wpm-presets {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 6px;
             margin-top: 10px;
         }
-        
         .wpm-preset {
             padding: 10px 8px;
             background: var(--bg);
@@ -122,26 +113,22 @@
             text-align: center;
             white-space: nowrap;
         }
-        
         @media (max-width: 400px) {
             .wpm-preset {
                 padding: 8px 4px;
                 font-size: 0.7rem;
             }
         }
-        
         .wpm-preset:hover {
             border-color: var(--primary);
             color: var(--primary);
         }
-        
         .wpm-preset.active {
             background: linear-gradient(145deg, #8b5cf6, #6d28d9);
             color: white;
             border-color: var(--primary);
             box-shadow: 5px 5px 12px rgba(109, 40, 217, 0.3), -5px -5px 12px rgba(255, 255, 255, 0.9);
         }
-        
         input[type="range"] {
             -webkit-appearance: none;
             width: 100%;
@@ -150,7 +137,6 @@
             border-radius: 4px;
             box-shadow: inset 2px 2px 5px rgba(166, 180, 200, 0.5), inset -2px -2px 5px rgba(255, 255, 255, 0.9);
         }
-        
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 24px;
@@ -161,11 +147,9 @@
             box-shadow: 3px 3px 8px rgba(109, 40, 217, 0.4), -3px -3px 8px rgba(255, 255, 255, 0.9);
             transition: transform 0.2s;
         }
-        
         input[type="range"]::-webkit-slider-thumb:hover {
             transform: scale(1.15);
         }
-        
         input[type="range"]::-moz-range-thumb {
             width: 24px;
             height: 24px;
@@ -175,59 +159,49 @@
             border: none;
             box-shadow: 3px 3px 8px rgba(109, 40, 217, 0.4);
         }
-        
-        /* Fluctuation slider with different color */
         .fluctuation-slider::-webkit-slider-thumb {
             background: linear-gradient(145deg, #f472b6, #ec4899);
             box-shadow: 3px 3px 8px rgba(244, 114, 182, 0.4), -3px -3px 8px rgba(255, 255, 255, 0.9);
         }
-        
         .fluctuation-slider::-moz-range-thumb {
             background: linear-gradient(145deg, #f472b6, #ec4899);
             box-shadow: 3px 3px 8px rgba(244, 114, 182, 0.4);
         }
-        
         .fluctuation-value {
             color: #ec4899 !important;
         }
-        
-        /* Slider labels */
         .slider-labels {
             display: flex;
             justify-content: space-between;
             margin-top: 6px;
             padding: 0 2px;
         }
-        
         .slider-label {
             font-family: var(--font-mono);
             font-size: 0.7rem;
             color: #888;
             text-align: center;
         }
-        
         .slider-label.active {
             color: #ec4899;
             font-weight: 700;
         }
-        
-textarea, #textInput {
-    background: linear-gradient(145deg, #dde4f6, #f5f8ff) !important;
-    border-radius: var(--radius);
-    box-shadow: inset 4px 4px 10px rgba(166, 180, 200, 0.5), inset -4px -4px 10px rgba(255, 255, 255, 0.9);
-    border: 1px solid transparent;
-    transition: border-color 0.3s;
-    padding: 10px 10px !important;
-    margin: 0;
-    width: 100%;
-    resize: vertical;
-    font-family: var(--font-body);
-    font-size: 1rem;
-    line-height: 1.0;
-    color: var(--text);
-    text-align: justify;
-}
-        
+        textarea, #textInput {
+            background: linear-gradient(145deg, #dde4f6, #f5f8ff) !important;
+            border-radius: var(--radius);
+            box-shadow: inset 4px 4px 10px rgba(166, 180, 200, 0.5), inset -4px -4px 10px rgba(255, 255, 255, 0.9);
+            border: 1px solid transparent;
+            transition: border-color 0.3s;
+            padding: 10px 10px !important;
+            margin: 0;
+            width: 100%;
+            resize: vertical;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.0;
+            color: var(--text);
+            text-align: justify;
+        }
         @media (max-width: 480px) {
             textarea {
                 padding: 18px 14px;
@@ -235,16 +209,13 @@ textarea, #textInput {
                 line-height: 1.7;
             }
         }
-        
         textarea:focus {
             outline: none;
             border-color: var(--primary);
         }
-        
         textarea::placeholder {
             color: #999;
         }
-        
         select {
             background: linear-gradient(145deg, #dde4f6, #f5f8ff);
             border-radius: var(--radius);
@@ -261,12 +232,10 @@ textarea, #textInput {
             background-position: right 12px center;
             background-size: 18px;
         }
-        
         select:focus {
             outline: none;
             border-color: var(--primary);
         }
-        
         .live-display {
             display: none;
             text-align: center;
@@ -276,17 +245,14 @@ textarea, #textInput {
             margin-top: 15px;
             box-shadow: 6px 6px 16px rgba(166, 180, 200, 0.5), -6px -6px 16px rgba(255, 255, 255, 0.9);
         }
-        
         .live-display.active {
             display: block;
             animation: fadeIn 0.3s ease;
         }
-        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         .live-wpm {
             font-size: 4rem;
             font-weight: 800;
@@ -298,21 +264,18 @@ textarea, #textInput {
             font-family: var(--font-display);
             transition: transform 0.2s ease;
         }
-        
         .live-wpm.fluctuating-up {
             transform: scale(1.05);
             background: linear-gradient(135deg, #10b981, #34d399);
             -webkit-background-clip: text;
             background-clip: text;
         }
-        
         .live-wpm.fluctuating-down {
             transform: scale(0.95);
             background: linear-gradient(135deg, #f59e0b, #fbbf24);
             -webkit-background-clip: text;
             background-clip: text;
         }
-        
         .live-wpm-label {
             font-size: 0.9rem;
             color: var(--text-light);
@@ -322,11 +285,9 @@ textarea, #textInput {
             letter-spacing: 1px;
             transition: color 0.2s ease;
         }
-        
         .live-wpm-label.fluctuating {
             color: #ec4899;
         }
-        
         .progress-bar {
             width: 100%;
             height: 10px;
@@ -336,7 +297,6 @@ textarea, #textInput {
             overflow: hidden;
             box-shadow: inset 2px 2px 5px rgba(166, 180, 200, 0.5);
         }
-        
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #7c3aed, #f472b6);
@@ -344,14 +304,12 @@ textarea, #textInput {
             transition: width 0.3s ease;
             width: 0%;
         }
-        
         .live-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             margin-top: 20px;
         }
-        
         .live-stat {
             text-align: center;
             padding: 12px;
@@ -359,7 +317,6 @@ textarea, #textInput {
             border-radius: var(--radius);
             box-shadow: 3px 3px 8px rgba(166, 180, 200, 0.3), -3px -3px 8px rgba(255, 255, 255, 0.9);
         }
-        
         .live-stat-label {
             font-size: 0.7rem;
             color: var(--text-light);
@@ -368,47 +325,34 @@ textarea, #textInput {
             letter-spacing: 0.5px;
             margin-bottom: 6px;
         }
-        
         .live-stat-value {
             font-size: 1.1rem;
             font-weight: 700;
             color: var(--primary);
             font-family: var(--font-mono);
         }
-        
-        /* Button transitions */
         .btn-container {
             transition: all 0.3s ease;
         }
-        
         .btn-container.hidden {
             display: none;
         }
-        
         .fade-in {
             animation: fadeIn 0.3s ease;
         }
-        
-        /* Remaining time colors */
         .time-remaining {
             color: #10b981 !important;
         }
-        
         .time-warning {
             color: #f59e0b !important;
         }
-        
         .time-critical {
             color: #ef4444 !important;
         }
-        
-        /* Main content area */
         main {
             flex: 1;
             width: 100%;
         }
-        
-        /* Sticky Footer */
         .sticky-footer {
             position: sticky;
             bottom: 0;
@@ -420,164 +364,530 @@ textarea, #textInput {
             margin-top: auto;
             z-index: 50;
         }
-        
         .sticky-footer .clay {
             margin: 0;
         }
-        
         @media (max-height: 700px) {
             .sticky-footer {
                 position: relative;
             }
         }
+        .auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+        .auth-overlay.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        .auth-sheet {
+            position: fixed;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 50%, #fdf2f8 100%);
+            z-index: 101;
+            transition: transform 0.3s ease;
+        }
+        @media (max-width: 767px) and (orientation: portrait) {
+            .auth-sheet {
+                bottom: 0;
+                left: 0;
+                right: 0;
+                border-radius: 20px 20px 0 0;
+                transform: translateY(100%);
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            .auth-sheet.active {
+                transform: translateY(0);
+            }
+        }
+        @media (min-width: 768px), (orientation: landscape) {
+            .auth-sheet {
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 90%;
+                max-width: 450px;
+                transform: translateX(100%);
+                overflow-y: auto;
+            }
+            .auth-sheet.active {
+                transform: translateX(0);
+            }
+        }
+        .auth-sheet-content {
+            padding: 24px;
+        }
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        .auth-divider span {
+            padding: 0 10px;
+            color: #888;
+            font-size: 0.85rem;
+            font-family: var(--font-ui);
+        }
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(145deg, #ffffff, #e8eeff);
+            border-radius: var(--radius);
+            box-shadow: 3px 3px 8px rgba(166, 180, 200, 0.3), -3px -3px 8px rgba(255, 255, 255, 0.9);
+            border: 2px solid transparent;
+            cursor: pointer;
+            text-align: center;
+            font-family: var(--font-ui);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        .auth-tab.active {
+            background: linear-gradient(145deg, #8b5cf6, #6d28d9);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 5px 5px 12px rgba(109, 40, 217, 0.3), -5px -5px 12px rgba(255, 255, 255, 0.9);
+        }
+        .auth-form {
+            display: none;
+        }
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+            font-family: var(--font-ui);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .google-btn-icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+        }
+        .app-container {
+            display: none;
+        }
+        .app-container.active {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .user-menu {
+            position: relative;
+        }
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #8b5cf6, #6d28d9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 3px 3px 8px rgba(109, 40, 217, 0.4);
+        }
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: linear-gradient(145deg, #ffffff, #e8eeff);
+            border-radius: var(--radius);
+            box-shadow: 6px 6px 16px rgba(166, 180, 200, 0.5), -6px -6px 16px rgba(255, 255, 255, 0.9);
+            min-width: 200px;
+            display: none;
+            z-index: 1000;
+        }
+        .user-dropdown.active {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+        .user-dropdown-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            font-family: var(--font-ui);
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(166, 180, 200, 0.2);
+            transition: background 0.2s ease;
+        }
+        .user-dropdown-item:last-child {
+            border-bottom: none;
+        }
+        .user-dropdown-item:hover {
+            background: rgba(124, 58, 237, 0.1);
+        }
+        .user-dropdown-item.danger {
+            color: #ef4444;
+        }
+        .close-auth-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #ffffff, #e8eeff);
+            box-shadow: 3px 3px 8px rgba(166, 180, 200, 0.3), -3px -3px 8px rgba(255, 255, 255, 0.9);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #666;
+            transition: all 0.2s ease;
+        }
+        .close-auth-btn:hover {
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
-    <header class="clay header-inner sticky top-2 z-40 full-width">
-        <div class="flex justify-between items-center">
-            <div class="flex items-center">
-                <div class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center text-white text-sm font-bold mr-2" style="font-family: var(--font-mono); border-radius: var(--radius);">⚡</div>
-                <h1 class="brand-text font-bold gradient-text">DICTATION</h1>
+    <div class="auth-overlay" id="authOverlay"></div>
+    <div class="auth-sheet" id="authSheet">
+        <button class="close-auth-btn" id="closeAuthBtn">×</button>
+        <div class="auth-sheet-content">
+            <div class="flex items-center justify-center mb-6">
+                <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center text-white text-xl font-bold mr-3" style="font-family: var(--font-mono); border-radius: var(--radius);">⚡</div>
+                <h1 class="brand-text font-bold gradient-text text-2xl">DICTATION</h1>
             </div>
-            <div class="text-right">
-                <span class="text-xs" style="font-family: var(--font-ui); color: var(--text-light);">WORDS: <span id="wordCount" class="control-value">0</span></span>
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="signin">SIGN IN</div>
+                <div class="auth-tab" data-tab="signup">SIGN UP</div>
             </div>
+            <form class="auth-form active" id="signinForm">
+                <div class="form-group">
+                    <label class="form-label">EMAIL</label>
+                    <input type="email" class="clay-input" id="signinEmail" placeholder="demo@dictation.app" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">PASSWORD</label>
+                    <input type="password" class="clay-input" id="signinPassword" placeholder="password: demo123" required>
+                </div>
+                <button type="submit" class="clay-btn-primary w-full py-3 font-bold btn-text" style="border-radius: var(--radius);">
+                    SIGN IN
+                </button>
+            </form>
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <label class="form-label">NAME</label>
+                    <input type="text" class="clay-input" id="signupName" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">EMAIL</label>
+                    <input type="email" class="clay-input" id="signupEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">PASSWORD</label>
+                    <input type="password" class="clay-input" id="signupPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="clay-btn-primary w-full py-3 font-bold btn-text" style="border-radius: var(--radius);">
+                    SIGN UP
+                </button>
+            </form>
+            <div class="auth-divider">
+                <span>OR</span>
+            </div>
+            <button class="clay-btn-google w-full py-3 font-bold btn-text flex items-center justify-center" id="googleSignInBtn" style="border-radius: var(--radius);">
+                <svg class="google-btn-icon" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                SIGN IN WITH GOOGLE
+            </button>
         </div>
-    </header>
-
-    <main class="full-width">
-        <!-- Text Input Section -->
-        <section class="full-width" style="padding-top: 8px;">
-            <div class="clay p-4 content-box">
-                <h2 class="card-title font-bold mb-3 gradient-text">📋 DICTATION PASSAGE</h2>
-                <textarea id="textInput" rows="8" placeholder="Paste your dictation passage here...">Honourable Speaker, I rise to present the Union Budget for the financial year 2024-25.
-
+    </div>
+    <div class="app-container" id="appContainer">
+        <header class="clay header-inner sticky top-2 z-40 full-width">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center text-white text-sm font-bold mr-2" style="font-family: var(--font-mono); border-radius: var(--radius);">⚡</div>
+                    <h1 class="brand-text font-bold gradient-text">DICTATION</h1>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-xs" style="font-family: var(--font-ui); color: var(--text-light);">WORDS: <span id="wordCount" class="control-value">0</span></span>
+                    <div class="user-menu">
+                        <div class="user-avatar" id="userAvatar"></div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-dropdown-item" id="userEmail"></div>
+                            <div class="user-dropdown-item danger" id="logoutBtn">🚪 Logout</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="full-width">
+            <section class="full-width" style="padding-top: 8px;">
+                <div class="clay p-4 content-box">
+                    <h2 class="card-title font-bold mb-3 gradient-text">📋 DICTATION PASSAGE</h2>
+                    <textarea id="textInput" rows="8" placeholder="Paste your dictation passage here...">Honourable Speaker, I rise to present the Union Budget for the financial year 2024-25.
 This budget marks a significant milestone in India's journey towards becoming a developed nation by 2047. Our economy has shown remarkable resilience, with GDP growth projected at 7.3 percent, making India the fastest-growing major economy in the world.
-
 The government is committed to empowering the poor, women, youth, and farmers. We are allocating rupees two lakh crore for the Pradhan Mantri Awas Yojana, ensuring housing for all. Our infrastructure development continues with investments exceeding eleven lakh crore rupees.
-
 For the agriculture sector, we propose enhanced credit facilities and minimum support prices. The education budget has been increased by twelve percent, focusing on digital learning and skill development. Healthcare receives special attention with ten thousand new Jan Aushadhi Kendras.
-
 We are introducing tax reforms to benefit the middle class. The new tax regime offers rebates up to seven lakh rupees. Startups will enjoy extended tax holidays, encouraging innovation and entrepreneurship.
-
 This budget aims at inclusive growth, sustainable development, and creating opportunities for every Indian citizen. Together, we shall build an Atmanirbhar Bharat. Jai Hind!</textarea>
-            </div>
-        </section>
-
-        <!-- Voice & Settings Section -->
-        <section class="full-width" style="padding-top: 0;">
-            <div class="clay p-4 content-box">
-                <h2 class="card-title font-bold mb-3 gradient-text">🎙️ VOICE & SETTINGS</h2>
-                
-                <!-- Voice Selection -->
-                <div class="mb-4">
-                    <label class="control-label">
-                        <span>🇮🇳 INDIAN PREMIUM VOICE</span>
-                        <span class="control-value" id="voiceInfo">Loading...</span>
-                    </label>
-                    <select id="voiceSelect" class="clay-input">
-                        <option value="">Loading voices...</option>
-                    </select>
                 </div>
-
-                <!-- WPM Control -->
-                <div class="mb-4">
-                    <label class="control-label">
-                        <span>⚡ SPEAKING SPEED</span>
-                        <span class="control-value"><span id="wpmVal">80</span> WPM</span>
-                    </label>
-                    <div class="flex items-center gap-3 mb-2">
-                        <span style="font-family: var(--font-mono); color: #888; font-size: 0.7rem;">50</span>
-                        <input type="range" id="wpmSlider" min="50" max="140" step="5" value="80">
-                        <span style="font-family: var(--font-mono); color: #888; font-size: 0.7rem;">140</span>
+            </section>
+            <section class="full-width" style="padding-top: 0;">
+                <div class="clay p-4 content-box">
+                    <h2 class="card-title font-bold mb-3 gradient-text">🎙️ VOICE & SETTINGS</h2>
+                    <div class="mb-4">
+                        <label class="control-label">
+                            <span>🇮🇳 INDIAN PREMIUM VOICE</span>
+                            <span class="control-value" id="voiceInfo">Loading...</span>
+                        </label>
+                        <select id="voiceSelect" class="clay-input">
+                            <option value="">Loading voices...</option>
+                        </select>
                     </div>
-                    <div class="wpm-presets" id="wpmPresets">
-                        <button class="wpm-preset" data-wpm="50">50</button>
-                        <button class="wpm-preset" data-wpm="60">60</button>
-                        <button class="wpm-preset" data-wpm="70">70</button>
-                        <button class="wpm-preset active" data-wpm="80">80</button>
-                        <button class="wpm-preset" data-wpm="90">90</button>
-                        <button class="wpm-preset" data-wpm="100">100</button>
-                        <button class="wpm-preset" data-wpm="110">110</button>
-                        <button class="wpm-preset" data-wpm="120">120</button>
-                        <button class="wpm-preset" data-wpm="130">130</button>
-                        <button class="wpm-preset" data-wpm="140">140</button>
+                    <div class="mb-4">
+                        <label class="control-label">
+                            <span>⚡ SPEAKING SPEED</span>
+                            <span class="control-value"><span id="wpmVal">80</span> WPM</span>
+                        </label>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span style="font-family: var(--font-mono); color: #888; font-size: 0.7rem;">50</span>
+                            <input type="range" id="wpmSlider" min="50" max="140" step="5" value="80">
+                            <span style="font-family: var(--font-mono); color: #888; font-size: 0.7rem;">140</span>
+                        </div>
+                        <div class="wpm-presets" id="wpmPresets">
+                            <button class="wpm-preset" data-wpm="50">50</button>
+                            <button class="wpm-preset" data-wpm="60">60</button>
+                            <button class="wpm-preset" data-wpm="70">70</button>
+                            <button class="wpm-preset active" data-wpm="80">80</button>
+                            <button class="wpm-preset" data-wpm="90">90</button>
+                            <button class="wpm-preset" data-wpm="100">100</button>
+                            <button class="wpm-preset" data-wpm="110">110</button>
+                            <button class="wpm-preset" data-wpm="120">120</button>
+                            <button class="wpm-preset" data-wpm="130">130</button>
+                            <button class="wpm-preset" data-wpm="140">140</button>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Fluctuation Slider (3 options only) -->
-                <div class="mb-4">
-                    <label class="control-label">
-                        <span>📊 SPEED FLUCTUATION</span>
-                        <span class="control-value fluctuation-value" id="fluctuationDisplay">OFF</span>
-                    </label>
-                    <div class="flex items-center gap-3">
-                        <input type="range" id="fluctuationSlider" class="fluctuation-slider" min="0" max="10" step="5" value="0">
+                    <div class="mb-4">
+                        <label class="control-label">
+                            <span>📊 SPEED FLUCTUATION</span>
+                            <span class="control-value fluctuation-value" id="fluctuationDisplay">OFF</span>
+                        </label>
+                        <div class="flex items-center gap-3">
+                            <input type="range" id="fluctuationSlider" class="fluctuation-slider" min="0" max="10" step="5" value="0">
+                        </div>
+                        <div class="slider-labels">
+                            <span class="slider-label active" data-value="0">OFF</span>
+                            <span class="slider-label" data-value="5">±5 WPM</span>
+                            <span class="slider-label" data-value="10">±10 WPM</span>
+                        </div>
                     </div>
-                    <div class="slider-labels">
-                        <span class="slider-label active" data-value="0">OFF</span>
-                        <span class="slider-label" data-value="5">±5 WPM</span>
-                        <span class="slider-label" data-value="10">±10 WPM</span>
-                    </div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div id="startBtnContainer" class="btn-container">
-                    <button class="clay-btn-primary w-full py-4 font-bold flex items-center justify-center btn-text text-lg" id="startBtn" style="border-radius: var(--radius);">
-                        <span id="btnIcon">⚡</span>
-                        <span id="btnText" class="ml-2">START DICTATION</span>
-                    </button>
-                </div>
-                
-                <div id="playbackBtnContainer" class="btn-container hidden">
-                    <div class="grid grid-cols-2 gap-3">
-                        <button class="clay-btn-warning py-4 font-bold flex items-center justify-center btn-text text-base" id="pauseBtn" style="border-radius: var(--radius);">
-                            <span id="pauseIcon">⏸️</span>
-                            <span id="pauseText" class="ml-2">PAUSE</span>
-                        </button>
-                        <button class="clay-btn-danger py-4 font-bold flex items-center justify-center btn-text text-base" id="stopBtn" style="border-radius: var(--radius);">
-                            ⏹️ <span class="ml-2">STOP</span>
+                    <div id="startBtnContainer" class="btn-container">
+                        <button class="clay-btn-primary w-full py-4 font-bold flex items-center justify-center btn-text text-lg" id="startBtn" style="border-radius: var(--radius);">
+                            <span id="btnIcon">⚡</span>
+                            <span id="btnText" class="ml-2">START DICTATION</span>
                         </button>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Live Display -->
-        <section class="full-width" style="padding-top: 0;">
-            <div class="live-display" id="liveDisplay">
-                <div class="live-wpm" id="liveWpm">80</div>
-                <div class="live-wpm-label" id="liveWpmLabel">Current WPM</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-                <div class="live-stats">
-                    <div class="live-stat">
-                        <div class="live-stat-label">Progress</div>
-                        <div class="live-stat-value" id="progressText">0 / 0</div>
-                    </div>
-                    <div class="live-stat">
-                        <div class="live-stat-label">⏱️ Remaining Time</div>
-                        <div class="live-stat-value time-remaining" id="timeText">0:00</div>
+                    <div id="playbackBtnContainer" class="btn-container hidden">
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="clay-btn-warning py-4 font-bold flex items-center justify-center btn-text text-base" id="pauseBtn" style="border-radius: var(--radius);">
+                                <span id="pauseIcon">⏸️</span>
+                                <span id="pauseText" class="ml-2">PAUSE</span>
+                            </button>
+                            <button class="clay-btn-danger py-4 font-bold flex items-center justify-center btn-text text-base" id="stopBtn" style="border-radius: var(--radius);">
+                                ⏹️ <span class="ml-2">STOP</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </section>
+            <section class="full-width" style="padding-top: 0;">
+                <div class="live-display" id="liveDisplay">
+                    <div class="live-wpm" id="liveWpm">80</div>
+                    <div class="live-wpm-label" id="liveWpmLabel">Current WPM</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="live-stats">
+                        <div class="live-stat">
+                            <div class="live-stat-label">Progress</div>
+                            <div class="live-stat-value" id="progressText">0 / 0</div>
+                        </div>
+                        <div class="live-stat">
+                            <div class="live-stat-label">⏱️ Remaining Time</div>
+                            <div class="live-stat-value time-remaining" id="timeText">0:00</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="sticky-footer">
+            <div class="clay p-3 text-center full-width" style="margin: 0 10px; width: calc(100% - 20px);">
+                <div class="flex items-center justify-center mb-1">
+                    <div class="w-6 h-6 rounded-lg gradient-bg flex items-center justify-center text-white font-bold mr-2 text-xs" style="font-family: var(--font-mono); border-radius: var(--radius);">⚡</div>
+                    <span class="brand-text font-bold gradient-text">SEAMLESS DICTATION</span>
+                </div>
+                <p class="text-gray-600 text-xs">© 2024 SEAMLESS SHORTHAND DICTATION</p>
             </div>
-        </section>
-    </main>
-
-    <!-- Sticky Footer -->
-    <footer class="sticky-footer">
-        <div class="clay p-3 text-center full-width" style="margin: 0 10px; width: calc(100% - 20px);">
-            <div class="flex items-center justify-center mb-1">
-                <div class="w-6 h-6 rounded-lg gradient-bg flex items-center justify-center text-white font-bold mr-2 text-xs" style="font-family: var(--font-mono); border-radius: var(--radius);">⚡</div>
-                <span class="brand-text font-bold gradient-text">SEAMLESS DICTATION</span>
-            </div>
-            <p class="text-gray-600 text-xs">© 2024 SEAMLESS SHORTHAND DICTATION</p>
-        </div>
-    </footer>
-
+        </footer>
+    </div>
     <script>
-        // ==================== DICTATION ENGINE ====================
+        class AuthManager {
+            constructor() {
+                this.currentUser = null;
+                this.demoCredentials = {
+                    email: 'demo@dictation.app',
+                    password: 'demo123',
+                    name: 'Demo User'
+                };
+                this.init();
+            }
+            init() {
+                const savedUser = localStorage.getItem('dictationUser');
+                if (savedUser) {
+                    this.currentUser = JSON.parse(savedUser);
+                    this.showApp();
+                } else {
+                    this.showAuth();
+                }
+            }
+            signIn(email, password) {
+                if (email === this.demoCredentials.email && password === this.demoCredentials.password) {
+                    this.currentUser = {
+                        email: this.demoCredentials.email,
+                        name: this.demoCredentials.name,
+                        provider: 'email'
+                    };
+                    localStorage.setItem('dictationUser', JSON.stringify(this.currentUser));
+                    this.showApp();
+                    return true;
+                }
+                alert('Invalid credentials! Use demo login:\ndemo@dictation.app / demo123');
+                return false;
+            }
+            signUp(name, email, password) {
+                this.currentUser = {
+                    email: email,
+                    name: name,
+                    provider: 'email'
+                };
+                localStorage.setItem('dictationUser', JSON.stringify(this.currentUser));
+                this.showApp();
+                return true;
+            }
+            signInWithGoogle() {
+                this.currentUser = {
+                    email: 'user@gmail.com',
+                    name: 'Google User',
+                    provider: 'google'
+                };
+                localStorage.setItem('dictationUser', JSON.stringify(this.currentUser));
+                this.showApp();
+            }
+            logout() {
+                this.currentUser = null;
+                localStorage.removeItem('dictationUser');
+                this.showAuth();
+                if (engine && engine.isPlaying) {
+                    engine.stop();
+                }
+            }
+            showAuth() {
+                document.getElementById('authOverlay').classList.add('active');
+                document.getElementById('authSheet').classList.add('active');
+                document.getElementById('appContainer').classList.remove('active');
+            }
+            showApp() {
+                document.getElementById('authOverlay').classList.remove('active');
+                document.getElementById('authSheet').classList.remove('active');
+                document.getElementById('appContainer').classList.add('active');
+                this.updateUserUI();
+            }
+            updateUserUI() {
+                if (this.currentUser) {
+                    const initials = this.currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase();
+                    document.getElementById('userAvatar').textContent = initials;
+                    document.getElementById('userEmail').textContent = this.currentUser.email;
+                }
+            }
+        }
+        const authManager = new AuthManager();
+        document.getElementById('closeAuthBtn').addEventListener('click', () => {
+            if (authManager.currentUser) {
+                authManager.showApp();
+            }
+        });
+        document.getElementById('authOverlay').addEventListener('click', () => {
+            if (authManager.currentUser) {
+                authManager.showApp();
+            }
+        });
+        document.querySelectorAll('.auth-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.dataset.tab;
+                document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(targetTab + 'Form').classList.add('active');
+            });
+        });
+        document.getElementById('signinForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signinEmail').value;
+            const password = document.getElementById('signinPassword').value;
+            authManager.signIn(email, password);
+        });
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            authManager.signUp(name, email, password);
+        });
+        document.getElementById('googleSignInBtn').addEventListener('click', () => {
+            authManager.signInWithGoogle();
+        });
+        document.getElementById('userAvatar').addEventListener('click', () => {
+            document.getElementById('userDropdown').classList.toggle('active');
+        });
+        document.addEventListener('click', (e) => {
+            const userMenu = document.querySelector('.user-menu');
+            if (userMenu && !userMenu.contains(e.target)) {
+                document.getElementById('userDropdown').classList.remove('active');
+            }
+        });
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            authManager.logout();
+        });
         class DictationEngine {
             constructor() {
                 this.synth = window.speechSynthesis;
@@ -586,69 +896,55 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 this.isPlaying = false;
                 this.isPaused = false;
                 this.shouldStop = false;
-                
                 this.startTime = 0;
                 this.pausedTime = 0;
                 this.lastPauseStart = 0;
-                
                 this.totalWords = 0;
                 this.spokenWords = 0;
                 this.totalEstimatedTime = 0;
-                
                 this.targetWPM = 80;
                 this.pitch = 10;
-                this.fluctuation = 0; // 0 = OFF, 5 = ±5 WPM, 10 = ±10 WPM
+                this.fluctuation = 0;
                 this.selectedVoice = null;
                 this.lockedVoice = null;
                 this.currentChunkWPM = 80;
-                this.isFluctuating = false; // Track if currently fluctuating
-                this.fluctuationDirection = 0; // -1 = down, 0 = none, 1 = up
-                
+                this.isFluctuating = false;
+                this.fluctuationDirection = 0;
                 this.allowedVoiceNames = ['madhur', 'neerja', 'valluvar', 'mohan'];
-                
                 this.onStart = null;
                 this.onProgress = null;
                 this.onEnd = null;
                 this.onPause = null;
                 this.onResume = null;
                 this.onWpmChange = null;
-                
                 this.loadVoices();
             }
-
             loadVoices() {
                 const loadFn = () => {
                     if (this.isPlaying) return;
-                    
                     this.voices = this.synth.getVoices();
                     this.filterAllowedVoices();
                     this.populateVoiceSelect();
                 };
-                
                 loadFn();
                 if (this.synth.onvoiceschanged !== undefined) {
                     this.synth.onvoiceschanged = loadFn;
                 }
-                
                 setTimeout(loadFn, 100);
                 setTimeout(loadFn, 500);
                 setTimeout(loadFn, 1000);
             }
-
             filterAllowedVoices() {
                 this.allowedVoices = [];
                 const addedNames = new Set();
-                
                 this.voices.forEach((voice) => {
                     const voiceName = voice.name.toLowerCase();
                     const voiceLang = voice.lang.toLowerCase();
-                    
                     if (voiceLang.includes('zh') || voiceLang.includes('chinese') || 
                         voiceName.includes('chinese') || voiceName.includes('huihui') ||
                         voiceName.includes('kangkang') || voiceName.includes('yaoyao')) {
                         return;
                     }
-                    
                     for (const allowedName of this.allowedVoiceNames) {
                         if (voiceName.includes(allowedName)) {
                             if (!addedNames.has(allowedName)) {
@@ -659,11 +955,9 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                         }
                     }
                 });
-
                 this.allowedVoices.sort((a, b) => {
                     const aName = a.name.toLowerCase();
                     const bName = b.name.toLowerCase();
-                    
                     if (aName.includes('neerja')) return -1;
                     if (bName.includes('neerja')) return 1;
                     if (aName.includes('madhur')) return -1;
@@ -673,32 +967,25 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     return 0;
                 });
             }
-
             populateVoiceSelect() {
                 const select = document.getElementById('voiceSelect');
                 const voiceInfo = document.getElementById('voiceInfo');
-                
                 if (this.allowedVoices.length === 0) {
                     select.innerHTML = '<option value="">No premium voices available</option>';
                     voiceInfo.textContent = 'No voices found';
                     return;
                 }
-
                 const femaleVoices = [];
                 const maleVoices = [];
-
                 this.allowedVoices.forEach((voice) => {
                     const voiceName = voice.name.toLowerCase();
-                    
                     if (voiceName.includes('neerja')) {
                         femaleVoices.push(voice);
                     } else {
                         maleVoices.push(voice);
                     }
                 });
-
                 select.innerHTML = '';
-                
                 if (femaleVoices.length > 0) {
                     const femaleGroup = document.createElement('optgroup');
                     femaleGroup.label = '👩 FEMALE';
@@ -708,7 +995,6 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     });
                     select.appendChild(femaleGroup);
                 }
-                
                 if (maleVoices.length > 0) {
                     const maleGroup = document.createElement('optgroup');
                     maleGroup.label = '👨 MALE';
@@ -718,25 +1004,20 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     });
                     select.appendChild(maleGroup);
                 }
-
                 if (this.allowedVoices.length > 0) {
                     const firstIndex = this.voices.indexOf(this.allowedVoices[0]);
                     select.value = firstIndex;
                     this.selectedVoice = this.voices[firstIndex];
                 }
-
                 voiceInfo.textContent = `${this.allowedVoices.length} voices`;
-                
                 select.addEventListener('change', () => {
                     this.selectedVoice = this.voices[select.value];
                 });
             }
-
             createVoiceOption(voice) {
                 const option = document.createElement('option');
                 const realIndex = this.voices.indexOf(voice);
                 option.value = realIndex;
-                
                 let name = voice.name
                     .replace('Microsoft ', '')
                     .replace('Google ', '')
@@ -749,28 +1030,21 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     .replace(' - ', ' ')
                     .replace(/\(.*?\)/g, '')
                     .trim();
-                
                 const nameLower = voice.name.toLowerCase();
                 let badge = '';
                 if (nameLower.includes('neural')) badge = ' ⭐';
                 else if (nameLower.includes('premium')) badge = ' 💎';
                 else if (nameLower.includes('natural')) badge = ' ✨';
                 else if (!voice.localService) badge = ' ☁️';
-                
                 option.textContent = `${name}${badge}`;
-                
                 return option;
             }
-
             splitIntoChunks(text) {
                 const paragraphs = text.split(/\n\n+/);
                 const chunks = [];
-
                 paragraphs.forEach(para => {
                     if (!para.trim()) return;
-                    
                     const sentences = para.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [para];
-                    
                     sentences.forEach(sent => {
                         const trimmed = sent.trim();
                         if (trimmed) {
@@ -781,38 +1055,25 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                         }
                     });
                 });
-
                 return chunks;
             }
-
-            // Get fluctuated WPM with real-time changes
             getFluctuatedWPM() {
-                // If fluctuation is OFF, always return target WPM
                 if (this.fluctuation === 0) {
                     this.isFluctuating = false;
                     this.fluctuationDirection = 0;
                     return this.targetWPM;
                 }
-                
-                // 50% chance to fluctuate for more noticeable effect
                 const shouldFluctuate = Math.random() > 0.5;
-                
                 if (!shouldFluctuate) {
-                    // Reset to target WPM (no fluctuation)
                     this.isFluctuating = false;
                     this.fluctuationDirection = 0;
                     return this.targetWPM;
                 }
-                
-                // Fluctuate: randomly increase or decrease
                 this.isFluctuating = true;
                 this.fluctuationDirection = Math.random() > 0.5 ? 1 : -1;
                 const fluctuatedWPM = this.targetWPM + (this.fluctuationDirection * this.fluctuation);
-                
-                // Ensure WPM stays within reasonable bounds
                 return Math.max(40, Math.min(160, fluctuatedWPM));
             }
-
             resetState() {
                 this.isPlaying = false;
                 this.isPaused = false;
@@ -827,99 +1088,68 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 this.currentChunkWPM = this.targetWPM;
                 this.isFluctuating = false;
                 this.fluctuationDirection = 0;
-                
                 this.synth.cancel();
             }
-
             async speak(text) {
                 this.resetState();
-                
                 this.isPlaying = true;
                 this.isPaused = false;
                 this.shouldStop = false;
                 this.pausedTime = 0;
                 this.spokenWords = 0;
-                
                 this.lockedVoice = this.selectedVoice;
-                
                 const words = text.trim().split(/\s+/);
                 this.totalWords = words.length;
-                
                 this.totalEstimatedTime = (this.totalWords / this.targetWPM) * 60;
-
                 const chunks = this.splitIntoChunks(text);
-
                 if (this.onStart) {
                     this.onStart(this.targetWPM, this.totalWords, this.totalEstimatedTime);
                 }
-
                 this.startTime = performance.now();
-
                 for (let i = 0; i < chunks.length && !this.shouldStop; i++) {
                     while (this.isPaused && !this.shouldStop) {
                         await this.sleep(50);
                     }
-
                     if (this.shouldStop) break;
-
                     const chunk = chunks[i];
-                    
-                    // Get WPM for this chunk (may fluctuate in real-time)
                     this.currentChunkWPM = this.getFluctuatedWPM();
                     const msPerWord = 60000 / this.currentChunkWPM;
-                    
-                    // Notify WPM change with fluctuation info
                     if (this.onWpmChange) {
                         this.onWpmChange(this.currentChunkWPM, this.isFluctuating, this.fluctuationDirection);
                     }
-                    
                     const expectedStartTime = this.spokenWords * (60000 / this.targetWPM);
                     const actualElapsed = performance.now() - this.startTime - this.pausedTime;
-
                     if (actualElapsed < expectedStartTime) {
                         await this.sleep(expectedStartTime - actualElapsed);
                     }
-
                     await this.speakChunk(chunk.text, chunk.wordCount, msPerWord);
-
                     this.spokenWords += chunk.wordCount;
-                    
                     const progress = (this.spokenWords / this.totalWords) * 100;
-
                     if (this.onProgress) {
                         this.onProgress(this.spokenWords, this.totalWords, this.targetWPM, progress);
                     }
                 }
-
                 this.isPlaying = false;
                 this.lockedVoice = null;
-                
                 if (!this.shouldStop && this.onEnd) {
                     this.onEnd(this.targetWPM);
                 }
             }
-
             speakChunk(text, wordCount, msPerWord) {
                 return new Promise((resolve) => {
                     const utterance = new SpeechSynthesisUtterance(text);
-                    
                     if (this.lockedVoice) {
                         utterance.voice = this.lockedVoice;
                     }
-
                     const targetDuration = wordCount * msPerWord;
                     const baseWPM = 160;
                     const baseDuration = (wordCount / baseWPM) * 60000;
-
                     const speakRatio = 0.85;
                     let rate = baseDuration / (targetDuration * speakRatio);
-
                     rate = Math.max(0.5, Math.min(2.0, rate));
                     utterance.rate = rate;
-                    
                     const pitchValue = 1 + (this.pitch / 20);
                     utterance.pitch = Math.max(0.5, Math.min(2.0, pitchValue));
-
                     let resolved = false;
                     const safeResolve = () => {
                         if (!resolved) {
@@ -927,23 +1157,18 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                             resolve();
                         }
                     };
-
                     const timeout = setTimeout(safeResolve, targetDuration + 3000);
-                    
                     utterance.onend = () => {
                         clearTimeout(timeout);
                         safeResolve();
                     };
-                    
                     utterance.onerror = () => {
                         clearTimeout(timeout);
                         safeResolve();
                     };
-
                     this.synth.speak(utterance);
                 });
             }
-
             pause() {
                 if (this.isPlaying && !this.isPaused) {
                     this.isPaused = true;
@@ -952,7 +1177,6 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     if (this.onPause) this.onPause();
                 }
             }
-
             resume() {
                 if (this.isPlaying && this.isPaused) {
                     this.pausedTime += performance.now() - this.lastPauseStart;
@@ -961,7 +1185,6 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     if (this.onResume) this.onResume();
                 }
             }
-
             stop() {
                 this.shouldStop = true;
                 this.isPlaying = false;
@@ -969,23 +1192,17 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 this.lockedVoice = null;
                 this.synth.cancel();
             }
-
             getRemainingTime() {
                 if (!this.isPlaying) return 0;
-                
                 const elapsed = (performance.now() - this.startTime - this.pausedTime) / 1000;
                 const remaining = Math.max(0, this.totalEstimatedTime - elapsed);
                 return remaining;
             }
-
             sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, Math.max(0, ms)));
             }
         }
-
-        // ==================== UI CONTROLLER ====================
         const engine = new DictationEngine();
-        
         const elements = {
             textInput: document.getElementById('textInput'),
             wordCount: document.getElementById('wordCount'),
@@ -1011,28 +1228,22 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
             liveWpmLabel: document.getElementById('liveWpmLabel'),
             progressFill: document.getElementById('progressFill')
         };
-
         let timeInterval = null;
-
         function init() {
             updateWordCount();
             setupEventListeners();
             setupEngineCallbacks();
-            
             engine.pitch = 10;
             engine.fluctuation = 0;
         }
-
         function setupEventListeners() {
             elements.textInput.addEventListener('input', updateWordCount);
-
             elements.wpmSlider.addEventListener('input', (e) => {
                 const wpm = parseInt(e.target.value);
                 elements.wpmVal.textContent = wpm;
                 engine.targetWPM = wpm;
                 updateWpmPresets(wpm);
             });
-
             elements.wpmPresets.addEventListener('click', (e) => {
                 if (e.target.classList.contains('wpm-preset')) {
                     const wpm = parseInt(e.target.dataset.wpm);
@@ -1042,16 +1253,12 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     updateWpmPresets(wpm);
                 }
             });
-
-            // Fluctuation slider (3 options: 0, 5, 10)
             elements.fluctuationSlider.addEventListener('input', (e) => {
                 const fluctuation = parseInt(e.target.value);
                 engine.fluctuation = fluctuation;
                 updateFluctuationDisplay(fluctuation);
                 updateSliderLabels(fluctuation);
             });
-
-            // Click on slider labels to set value
             document.querySelectorAll('.slider-label').forEach(label => {
                 label.addEventListener('click', () => {
                     const value = parseInt(label.dataset.value);
@@ -1061,12 +1268,10 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     updateSliderLabels(value);
                 });
             });
-
             elements.startBtn.addEventListener('click', handleStart);
             elements.pauseBtn.addEventListener('click', handlePauseResume);
             elements.stopBtn.addEventListener('click', handleStop);
         }
-
         function updateFluctuationDisplay(value) {
             if (value === 0) {
                 elements.fluctuationDisplay.textContent = 'OFF';
@@ -1074,45 +1279,33 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 elements.fluctuationDisplay.textContent = `±${value} WPM`;
             }
         }
-
         function updateSliderLabels(activeValue) {
             document.querySelectorAll('.slider-label').forEach(label => {
                 const labelValue = parseInt(label.dataset.value);
                 label.classList.toggle('active', labelValue === activeValue);
             });
         }
-
         function setupEngineCallbacks() {
             engine.onStart = (wpm, totalWords, totalEstimatedTime) => {
                 resetProgress();
-                
                 elements.liveDisplay.classList.add('active');
                 elements.liveWpm.textContent = wpm;
                 elements.liveWpmLabel.textContent = 'Current WPM';
                 elements.liveWpmLabel.classList.remove('fluctuating');
                 elements.progressText.textContent = `0 / ${totalWords}`;
-                
                 updateRemainingTimeDisplay(totalEstimatedTime);
-                
                 showPlaybackButtons();
                 startTimeCounter();
             };
-
             engine.onProgress = (spoken, total, targetWPM, progress) => {
                 elements.progressText.textContent = `${spoken} / ${total}`;
                 elements.progressFill.style.width = `${progress}%`;
             };
-
-            // Updated to show fluctuation in real-time
             engine.onWpmChange = (currentWPM, isFluctuating, direction) => {
                 elements.liveWpm.textContent = currentWPM;
-                
-                // Remove previous classes
                 elements.liveWpm.classList.remove('fluctuating-up', 'fluctuating-down');
                 elements.liveWpmLabel.classList.remove('fluctuating');
-                
                 if (isFluctuating && engine.fluctuation > 0) {
-                    // Show visual feedback for fluctuation
                     if (direction > 0) {
                         elements.liveWpm.classList.add('fluctuating-up');
                         elements.liveWpmLabel.textContent = `↑ +${engine.fluctuation} WPM`;
@@ -1122,11 +1315,9 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                     }
                     elements.liveWpmLabel.classList.add('fluctuating');
                 } else {
-                    // Reset to target WPM (no fluctuation)
                     elements.liveWpmLabel.textContent = 'Current WPM';
                 }
             };
-
             engine.onEnd = (finalWPM) => {
                 stopTimeCounter();
                 elements.timeText.textContent = '0:00';
@@ -1134,38 +1325,31 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 elements.liveWpm.classList.remove('fluctuating-up', 'fluctuating-down');
                 elements.liveWpmLabel.classList.remove('fluctuating');
                 elements.liveWpmLabel.textContent = 'Completed!';
-                
                 setTimeout(() => {
                     elements.liveDisplay.classList.remove('active');
                     showStartButton();
                     resetProgress();
                 }, 2000);
             };
-
             engine.onPause = () => {
                 elements.pauseIcon.textContent = '▶️';
                 elements.pauseText.textContent = 'RESUME';
                 stopTimeCounter();
             };
-
             engine.onResume = () => {
                 elements.pauseIcon.textContent = '⏸️';
                 elements.pauseText.textContent = 'PAUSE';
                 startTimeCounter();
             };
         }
-
         function formatTime(seconds) {
             const mins = Math.floor(seconds / 60);
             const secs = Math.floor(seconds % 60);
             return `${mins}:${secs.toString().padStart(2, '0')}`;
         }
-
         function updateRemainingTimeDisplay(remainingSeconds) {
             elements.timeText.textContent = formatTime(remainingSeconds);
-            
             elements.timeText.className = 'live-stat-value';
-            
             if (remainingSeconds <= 10) {
                 elements.timeText.classList.add('time-critical');
             } else if (remainingSeconds <= 30) {
@@ -1174,57 +1358,46 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 elements.timeText.classList.add('time-remaining');
             }
         }
-
         function startTimeCounter() {
             if (timeInterval) clearInterval(timeInterval);
-            
             timeInterval = setInterval(() => {
                 const remaining = engine.getRemainingTime();
                 updateRemainingTimeDisplay(remaining);
-                
                 if (remaining <= 0) {
                     stopTimeCounter();
                 }
             }, 100);
         }
-
         function stopTimeCounter() {
             if (timeInterval) {
                 clearInterval(timeInterval);
                 timeInterval = null;
             }
         }
-
         function updateWordCount() {
             const text = elements.textInput.value.trim();
             const count = text ? text.split(/\s+/).length : 0;
             elements.wordCount.textContent = count;
         }
-
         function updateWpmPresets(activeWpm) {
             const buttons = elements.wpmPresets.querySelectorAll('.wpm-preset');
             buttons.forEach(btn => {
                 btn.classList.toggle('active', parseInt(btn.dataset.wpm) === activeWpm);
             });
         }
-
         function handleStart() {
             const text = elements.textInput.value.trim();
             if (!text) {
                 alert('Please enter text for dictation!');
                 return;
             }
-            
             if (engine.isPlaying) {
                 engine.stop();
                 stopTimeCounter();
             }
-            
             resetProgress();
-            
             engine.speak(text);
         }
-
         function handlePauseResume() {
             if (engine.isPaused) {
                 engine.resume();
@@ -1232,7 +1405,6 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
                 engine.pause();
             }
         }
-
         function handleStop() {
             engine.stop();
             stopTimeCounter();
@@ -1240,13 +1412,11 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
             showStartButton();
             resetProgress();
         }
-
         function showStartButton() {
             elements.startBtnContainer.classList.remove('hidden');
             elements.startBtnContainer.classList.add('fade-in');
             elements.playbackBtnContainer.classList.add('hidden');
         }
-
         function showPlaybackButtons() {
             elements.startBtnContainer.classList.add('hidden');
             elements.playbackBtnContainer.classList.remove('hidden');
@@ -1254,7 +1424,6 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
             elements.pauseIcon.textContent = '⏸️';
             elements.pauseText.textContent = 'PAUSE';
         }
-
         function resetProgress() {
             elements.progressFill.style.width = '0%';
             elements.progressText.textContent = '0 / 0';
@@ -1265,9 +1434,7 @@ This budget aims at inclusive growth, sustainable development, and creating oppo
             elements.liveWpmLabel.textContent = 'Current WPM';
             elements.liveWpmLabel.classList.remove('fluctuating');
         }
-
         document.addEventListener('DOMContentLoaded', init);
-
         window.addEventListener('beforeunload', () => {
             engine.stop();
             stopTimeCounter();
